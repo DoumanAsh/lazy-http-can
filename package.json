@@ -1,0 +1,49 @@
+{
+  "name": "lazy-http-can",
+  "version": "0.1.0",
+  "description": "Simple HTTP testing service.",
+  "repository": "https://github.com/DoumanAsh/lazy-http-can",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install --only=production",
+    "start": "node --harmony-async-await index.js",
+    "pretest": "npm install",
+    "test": "node --harmony-async-await ./node_modules/ava/cli.js",
+    "coverage": "node --harmony-async-await ./node_modules/nyc/bin/nyc.js node --harmony-async-await ./node_modules/ava/cli.js",
+    "lint": "eslint . --ext .js",
+    "clean": "rm -rf .nyc_output coverage"
+  },
+  "author": "Douman",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.0.0",
+    "koa-better-router": "^2.0.1",
+    "koa-helmet": "^2.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "eslint": "*",
+    "nyc": "*",
+    "sinon": "*",
+    "assert-request": "*"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ],
+    "source": [
+      "server/**/*.js"
+    ],
+    "failFast": true
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "server/**/*.js"
+    ],
+    "reporter": [
+      "html",
+      "text"
+    ]
+  }
+}
