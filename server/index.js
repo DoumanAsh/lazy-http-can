@@ -19,13 +19,4 @@ app.use(async (ctx, next) => {
 
 app.use(router());
 
-app.use(async (ctx, next) => {
-    if (!ctx.route) {
-        ctx.body = "<h1>Not Found</h1>";
-        ctx.status = 404;
-    }
-
-    await next();
-});
-
 module.exports = app;

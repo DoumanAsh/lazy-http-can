@@ -1,6 +1,13 @@
 "use strict";
 const Router = require('koa-better-router');
-const router = Router().loadMethods();
+const router = Router({
+    notFound: async (ctx, next) => {
+        ctx.response.body = "<h1>Not Found</h1>";
+        ctx.response.status = 404;
+
+        await next();
+    },
+}).loadMethods();
 
 const data = require('./data');
 const utils = require('./utils');
